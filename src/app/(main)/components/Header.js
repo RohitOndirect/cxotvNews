@@ -68,7 +68,7 @@ const Header = () => {
             .trim();                  // Trim any leading/trailing hyphens
 
         // Navigate to search page with slugified search term
-        router.push(`/news-search/${slugifiedTerm}`);
+        router.push(`/search/${slugifiedTerm}`);
     };
 
 

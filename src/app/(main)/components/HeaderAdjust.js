@@ -47,9 +47,25 @@ const HeaderAdjust = ({ logo }) => {
     const handleSearch = async (e) => {
         e.preventDefault();
         const searchTerm = inputValue.trim().toLowerCase();
-        dispatch(setSearchTerm(searchTerm)); // Dispatch setSearchTerm action with inputValue
+
+        // Store original search term in session storage
+        sessionStorage.setItem("searchTerm", searchTerm);
+
+        // Dispatch setSearchTerm action with original inputValue
+        dispatch(setSearchTerm(searchTerm));
+
+        // Fetch search results with original search term
         await dispatch(fetchSearchResults(searchTerm));
-        router.push("/news-search"); // Use router.push for navigation
+
+        // Convert search term to a URL-friendly slug (replace spaces with hyphens)
+        const slugifiedTerm = searchTerm
+            .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/\s+/g, '-')     // Replace spaces with hyphens
+            .replace(/-+/g, '-')      // Replace multiple hyphens with a single hyphen
+            .trim();                  // Trim any leading/trailing hyphens
+
+        // Navigate to search page with slugified search term
+        router.push(`/search/${slugifiedTerm}`);
     };
 
     const options = [

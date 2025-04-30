@@ -17,7 +17,7 @@ export default function DefaultSearchPage() {
             // Encode the search term for URL safety
             const encodedSearchTerm = encodeURIComponent(storedSearchTerm);
             // Redirect to the specific search page
-            router.push(`/news-search/${encodedSearchTerm}`);
+            router.push(`/search/${encodedSearchTerm}`);
         }
     }, [router]);
 
