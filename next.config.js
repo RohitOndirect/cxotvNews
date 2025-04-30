@@ -11,6 +11,7 @@ const nextConfig = {
     httpAgentOptions: {
         timeout: 60000, // 60 seconds timeout for font requests
     },
+    reactStrictMode: true,
 };
 
 module.exports = nextConfig;
